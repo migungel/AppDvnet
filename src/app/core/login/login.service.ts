@@ -28,6 +28,7 @@ export class LoginService {
     body.set('dbname', this.database);
     body.set('user', user.user);
     body.set('pass', user.pass);
+    console.log(body.toString());
     //const jsonData = JSON.stringify(user);
     this.storage.saveDataJson('credentials', user);
     //this.storage.saveData('user', user.user);

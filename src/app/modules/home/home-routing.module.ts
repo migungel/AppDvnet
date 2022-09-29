@@ -1,3 +1,5 @@
+import { PointsComponent } from './points/points.component';
+import { InvoiceComponent } from './invoice/invoice.component';
 import { ProfileComponent } from './profile/profile.component';
 import { OtherComponent } from './other/other.component';
 import { InfoComponent } from './info/info.component';
@@ -10,12 +12,20 @@ const routes: Routes = [
     component: InfoComponent,
   },
   {
-    path: 'other',
-    component: OtherComponent,
+    path: 'invoice',
+    component: InvoiceComponent,
+  },
+  {
+    path: 'points',
+    component: PointsComponent,
   },
   {
     path: 'profile',
     component: ProfileComponent,
+  },
+  {
+    path: 'other',
+    component: OtherComponent,
   },
   {
     path: '',

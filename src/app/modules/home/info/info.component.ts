@@ -45,12 +45,13 @@ export class InfoComponent implements OnInit {
     this.identification = this.storage.getDataJson('currentUser')['identification'];
     //console.log(this.storage.getDataJson('currentUser'));
     //console.log(this.storage.getDataJson('credentials'));
-    this.services.getData('2450005885').subscribe(
+    //this.services.getData('2450005885').subscribe(
+    this.services.getData('0992860006001').subscribe(
     //this.services.getData(this.identification).subscribe(
       res => {
         const xml = new DOMParser().parseFromString(res, 'text/xml');
         const clientSearch = xml.getElementsByTagName('ClientSearch');
-        for(let c=0 ; c < xml.getElementsByTagName('ClientSearch').length; c++){
+        for(let c=0 ; c < clientSearch.length; c++){
           var contract = {
             'partner_id': clientSearch[c].getElementsByTagName('Partner_id')[0].textContent,
             'identification': clientSearch[c].getElementsByTagName('Identification')[0].textContent,

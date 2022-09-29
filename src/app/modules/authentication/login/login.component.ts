@@ -32,6 +32,8 @@ export class LoginComponent implements OnInit {
   user = { };
   error: boolean = false;
   alerta = '';
+  visible: boolean = true;
+  changeType: boolean = true;
 
   ngOnInit(): void {
   }
@@ -56,6 +58,7 @@ export class LoginComponent implements OnInit {
           name: myXML.getElementsByTagName('Name')[0].textContent,
           user_id: myXML.getElementsByTagName('User_id')[0].textContent,
           identification: myXML.getElementsByTagName('Identificacion')[0].textContent,
+          sign: myXML.getElementsByTagName('Firma')[0].textContent,
         };
         //console.log(Name);
         this.storage.saveDataJson('currentUser', currentUser);
@@ -88,6 +91,11 @@ export class LoginComponent implements OnInit {
     //    this.alerta = 'Usuario o clave incorrecto';
     //  }
     //);
+  }
+
+  viewPass(){
+    this.visible = !this.visible;
+    this.changeType = !this.changeType;
   }
 
   validarCampos(campo: string): boolean | null{

@@ -10,3 +10,20 @@ body{
 .error{
   color: red;
 }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+/* Importing Bootstrap SCSS file. */
+@import '~bootstrap/scss/bootstrap';
+@import "~bootstrap-icons/font/bootstrap-icons.css";
+
+.backdropBackground {
+  /* your css needs */
+  background-color: rgba(41, 57, 107, 0.219) !important;
+}
+
+.my-class .mat-dialog-container{
+  background-color: rgb(248, 255, 249) ;
+  /* Other CSS Styles */
+}

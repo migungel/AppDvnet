@@ -1,7 +1,7 @@
 <div class="card text-center">
   <!-- <img class="card-img-top" src="..." alt="Card image cap"> -->
   <div class="card-body">
-    <h5 class="card-title">Titulo {{ name }} </h5>
+    <h4 class="card-title">Titulo {{ name }} </h4>
     <p class="card-text"> Dirección: {{ direccion }} </p>
   </div>
   <ul class="list-group list-group-flush">
@@ -10,8 +10,11 @@
     <li class="list-group-item"> Saldo a pagar: {{ saldoPagar }} </li>
     <li class="list-group-item"> Ultra Puntos: {{ ultraPuntos }} </li>
   </ul>
+  <button (click)="details()"  type="button" class="btn btn-primary mt-2 mb-3 btn-rounded waves-effect w-md waves-light">Detalles</button>
+  <!-- <button (click)="openOrder()"  type="button" class="btn btn-primary mt-2 mb-3 btn-rounded waves-effect w-md waves-light">Detalles</button> -->
   <!-- <div class="card-body">
     <a href="#" class="card-link">Card link</a>
     <a href="#" class="card-link">Another link</a>
   </div> -->
 </div>
+

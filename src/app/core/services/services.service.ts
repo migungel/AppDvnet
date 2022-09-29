@@ -29,4 +29,28 @@ export class ServicesService {
     });
   }
 
+  getInvoice(partner_id: string){
+    let body = new URLSearchParams();
+    body.set('dbname', this.database);
+    body.set('user', this.storage.getDataJson('credentials')['user']);
+    body.set('pass', this.storage.getDataJson('credentials')['pass']);
+    body.set('partner_id', partner_id);
+    return this.http.post(`${this.url_client}/GetInvoices`, body.toString(), {
+      headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded'),
+      responseType: 'text'
+    });
+  }
+
+  getOrders(agreement_id: string){
+    let body = new URLSearchParams();
+    body.set('dbname', this.database);
+    body.set('user', this.storage.getDataJson('credentials')['user']);
+    body.set('pass', this.storage.getDataJson('credentials')['pass']);
+    body.set('contract_id', agreement_id);
+    return this.http.post(`${this.url_client}/GetOrders`, body.toString(), {
+      headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded'),
+      responseType: 'text'
+    });
+  }
+
 }

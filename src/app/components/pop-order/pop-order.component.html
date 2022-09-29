@@ -1,0 +1,9 @@
+<div class="card" style="width: 18rem;">
+  <div class="card-body">
+    <h4 class="card-title">Nombre: {{ order }}</h4>
+    <p class="card-text">Tipo de servicio: {{ type }}</p>
+    <p class="card-text">Fecha: {{ date }}</p>
+    <p class="card-text">Fecha a ejecutar: {{ date_execute }}</p>
+  </div>
+  <button (click)="closeDialog()"  type="button" class="btn btn-primary mt-2 mb-1">Cerrar</button>
+</div>
