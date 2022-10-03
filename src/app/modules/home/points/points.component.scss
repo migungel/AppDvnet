@@ -1,0 +1,18 @@
+.title {
+  padding: 10px 3px 1px 3px;
+  vertical-align: middle;
+  text-align: center;
+  background-color: #4c534d;
+  color: white;
+}
+
+.products{
+  display: grid;
+  //grid-template-columns: repeat(3, 1fr);
+  //grid-template-columns: repeat(auto-fill, 250px);
+  //grid-template-columns: repeat(auto-fill, .1fr);
+  //grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(25rem, 1fr));
+  grid-auto-rows: auto;
+  grid-gap: 1rem;
+}

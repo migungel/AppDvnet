@@ -1,3 +1,4 @@
+import { PointsProductsComponent } from './../../components/points-products/points-products.component';
 import { PopOrderComponent } from './../../components/pop-order/pop-order.component';
 import { InfoInvoiceComponent } from './../../components/info-invoice/info-invoice.component';
 import { CardComponent } from './../../components/card/card.component';
@@ -30,6 +31,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     InvoiceComponent,
     PointsComponent,
     InfoInvoiceComponent,
+    PointsProductsComponent,
   ],
   imports: [
     CommonModule,

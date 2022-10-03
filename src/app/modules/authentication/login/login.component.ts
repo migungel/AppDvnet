@@ -54,24 +54,23 @@ export class LoginComponent implements OnInit {
     this.loginserv.login(this.user).subscribe(
       res => {
         const myXML = new DOMParser().parseFromString(res, 'text/xml');
-        const currentUser = {
-          name: myXML.getElementsByTagName('Name')[0].textContent,
-          user_id: myXML.getElementsByTagName('User_id')[0].textContent,
-          identification: myXML.getElementsByTagName('Identificacion')[0].textContent,
-          sign: myXML.getElementsByTagName('Firma')[0].textContent,
-        };
-        //console.log(Name);
-        this.storage.saveDataJson('currentUser', currentUser);
-        //console.log(User.children);
-        //console.log(this.storage.getDataJson('credentials'));
-        //console.log(this.storage.getDataJson('currentUser'));
+        var id = myXML.getElementsByTagName('User_id')[0].textContent;
+        if ( id && (parseInt(id, 10) > 0) ) {
+          const currentUser = {
+            name: myXML.getElementsByTagName('Name')[0].textContent,
+            user_id: id,
+            identification: myXML.getElementsByTagName('Identificacion')[0].textContent,
+            sign: myXML.getElementsByTagName('Firma')[0].textContent,
+          };
+          this.storage.saveDataJson('currentUser', currentUser);
+          this.router.navigateByUrl('/home');
+        }else{
+          this.errorMsg();
+        }
 
-        this.router.navigateByUrl('/home');
       },
       err => {
-        //console.log(err);
-        this.error = true;
-        this.alerta = 'Usuario o clave incorrecto';
+        this.errorMsg();
       }
     );
 
@@ -96,6 +95,12 @@ export class LoginComponent implements OnInit {
   viewPass(){
     this.visible = !this.visible;
     this.changeType = !this.changeType;
+    return;
+  }
+
+  errorMsg(){
+    this.error = true;
+    this.alerta = 'Usuario o clave incorrecto';
   }
 
   validarCampos(campo: string): boolean | null{

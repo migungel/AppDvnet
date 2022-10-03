@@ -27,6 +27,10 @@ export class EncryptService {
     sessionStorage.setItem(key, this.encrypt(jsonData));
   }
 
+  getToken(key: string){
+    return sessionStorage.getItem(key);
+  }
+
   public getData(key: string) {
     let data = sessionStorage.getItem(key)|| "";
     return this.decrypt(data);
