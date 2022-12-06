@@ -1,0 +1,26 @@
+<div class="set">
+  <div class="form">
+    <h2>Cambiar contraseña</h2>
+    <div class="row">
+      <p class="text-center">Utilice el siguiente formulario para cambiar su contraseña.</p>
+      <form class="formlogin" id="passwordForm" [formGroup]="passForm" (ngSubmit)="changePass()">
+        <div class="input-group">
+          <input [type]="changeType?'password':'text'" class="form-control pwd1" formControlName="password1" placeholder="New Password" autocomplete="off" (change)="hasChange=true">
+          <div class="input-group-append">
+            <span class="input-group-text eyeicon" (click)="viewPass()"><i [ngClass]="visible?'bi bi-eye-fill':'bi bi-eye-slash-fill'" ></i></span>
+          </div>
+        </div>
+        <small class="error" *ngIf="validatePass('password1')">
+          Ingrese una contraseña, minimo 6 caracteres
+        </small>
+        <input type="password" class="form-control pwd2 mt-3" formControlName="password2" placeholder="Repeat Password" autocomplete="off">
+        <small class="error" *ngIf="validateMatch('password1', 'password2')">
+          Las contraseñas no coinciden
+        </small>
+        <div class="text-center mt-3">
+          <button type="submit" class="btn btn-primary">Cambiar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

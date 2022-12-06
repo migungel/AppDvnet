@@ -37,55 +37,48 @@ export class InvoiceComponent implements OnInit {
   ) {
   }
 
+  user = {};
+
   ngOnInit(): void {
+    this.service.verifyToken().subscribe(
+      res => {
+        this.user = res;
+        //console.log(res)
+        //this.setInvoices(res);
+      }
+    );
   }
 
   selectYear: string;
-  partner_id: string;
   invoices: Array<any> = [];
   invoicesEmpty: boolean = false;
 
   search(){
-    this.partner_id = this.storage.getDataJson('currentUser')['user_id'];
-    this.setInvoices(this.partner_id);
+    //console.log(this.service.verifyToken().subscribe(res => {return res;}));
+    this.setInvoices(this.user);
+    //this.service.verifyToken().subscribe(
+    //  res => {
+    //    //console.log(res)
+    //    this.setInvoices(res);
+    //  }
+    //);
   }
 
-  setInvoices(partner_id: string){
+  setInvoices(user: any){
     this.invoices = [];
-    partner_id = "107841";
     if (this.selectYear) {
-      this.service.getInvoice(partner_id).subscribe(
-        res =>{
-          const xml = new DOMParser().parseFromString(res, 'text/xml');
-          const invoicesXml = xml.getElementsByTagName('DVInvoices');
-          for(let c=0 ; c < invoicesXml.length; c++){
-            var invoice = {
-              'invoice_id': invoicesXml[c].getElementsByTagName('Invoice_id')[0].textContent,
-              'invoice': invoicesXml[c].getElementsByTagName('Invoice')[0].textContent,
-              'date': invoicesXml[c].getElementsByTagName('Fecha')[0].textContent,
-              'state': invoicesXml[c].getElementsByTagName('State')[0].textContent,
-              'auth': invoicesXml[c].getElementsByTagName('Autorizacion')[0].textContent,
-              'pdf': invoicesXml[c].getElementsByTagName('Pdf')[0].textContent,
-              'xml': invoicesXml[c].getElementsByTagName('Xml')[0].textContent,
-            };
-            if ( invoice['date'] && (invoice['date'].split('-')[0]==this.selectYear) ) {
-              this.invoices.push(invoice);
-            }
+      this.service.getInvoice(this.selectYear, user).subscribe(
+        res => {
+          if (res) {
+            //console.log(res)
+            this.invoices = res;
+            this.invoicesEmpty = (this.invoices.length <= 0 ) ? true : false;
+          } else {
+            this.invoicesEmpty = (this.invoices.length <= 0 ) ? true : false;
           }
-          this.invoicesEmpty = (this.invoices.length <= 0) ? true : false;
         }
       );
     }
   }
-
-  // @ViewChild('dp', { static: false })
-  // private picker!: MatDatepicker<Date>;
-
-  // chosenYearHandler(normalizedYear: Date) {
-  //   //const ctrlValue = this.date.value;
-  //   //ctrlValue.year(normalizedYear.getFullYear());
-  //   console.log(normalizedYear.getFullYear());
-  //   this.picker.close()
-  // }
 
 }

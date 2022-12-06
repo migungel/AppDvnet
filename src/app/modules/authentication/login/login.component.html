@@ -1,32 +1,72 @@
-<div class="container">
-  <form class="fomlogin" action="" [formGroup]="loginForm" (ngSubmit)="autenticar()">
-    <h1 class="mb-3">Iniciar sesión</h1>
-    <div *ngIf="error" class="alert alert-danger alert-dismissible fade show" role="alert">
+<div class="login">
+  <div class="child-login">
+    <img src="../../../assets/login/logo.png" alt="Card image cap">
+  </div>
+  <div class="child-login">
+    <form class="formlogin" [formGroup]="loginForm" (ngSubmit)="autenticar()">
+      <h1 class="mb-3">Iniciar sesión</h1>
+      <div *ngIf="error" class="alert alert-danger alert-dismissible fade show" role="alert">
         <strong>Error!</strong> {{alerta}}
         <button (click)="closeAlert()" type="button" class="close" data-dismiss="alert" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
-    </div>
-    <div class="row">
+      </div>
+      <div class="row mb-3">
         <div class="mb-4">
-          <input type="text" class="form-control shadow-none" id="usuario" placeholder="Cédula" formControlName="usuario">
-          <small class="error" *ngIf="validarCampos('usuario')">
+          <input type="text" class="form-control" id="identification" placeholder="Cédula o RUC" formControlName="identification">
+          <small class="error" *ngIf="validarCampos('identification')">
             Ingrese una cedula válida
           </small>
         </div>
-
-        <div class="input-group mb-1">
-          <input [type]="changeType?'password':'text'" class="form-control shadow-none" id="password" placeholder="Contraseña" formControlName="password">
-          <div class="input-group-append">
-            <span class="input-group-text eyeicon" (click)="viewPass()"><i [ngClass]="visible?'bi bi-eye-fill':'bi bi-eye-slash-fill'" ></i></span>
+        <div class="mb-3">
+          <div class="input-group">
+            <input [type]="changeType?'password':'text'" class="form-control" id="password" placeholder="Contraseña" formControlName="password">
+            <div class="input-group-append">
+              <span class="input-group-text eyeicon" (click)="viewPass()"><i [ngClass]="visible?'bi bi-eye-fill':'bi bi-eye-slash-fill'" ></i></span>
+            </div>
           </div>
+          <small class="error" *ngIf="validarCampos('password')">
+            Ingrese su contraseña
+          </small>
         </div>
-        <small class="error" *ngIf="validarCampos('password')">
-          Ingrese su contraseña
+      </div>
+      <div class="buttons text-center">
+        <button type="button" class="button-register" (click)="register()">Registrate</button>
+        <button type="submit" class="button-login">Ingresar</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- <div class="container">
+  <form class="formlogin" action="" [formGroup]="loginForm" (ngSubmit)="autenticar()">
+    <h1 class="mb-3">Iniciar sesión</h1>
+    <div *ngIf="error" class="alert alert-danger alert-dismissible fade show" role="alert">
+      <strong>Error!</strong> {{alerta}}
+      <button (click)="closeAlert()" type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="row">
+      <div class="mb-4">
+        <input type="text" class="form-control" id="identification" placeholder="Cédula o RUC" formControlName="identification">
+        <small class="error" *ngIf="validarCampos('identification')">
+          Ingrese una cedula válida
         </small>
+      </div>
+      <div class="input-group mb-1">
+        <input [type]="changeType?'password':'text'" class="form-control" id="password" placeholder="Contraseña" formControlName="password">
+        <div class="input-group-append">
+          <span class="input-group-text eyeicon" (click)="viewPass()"><i [ngClass]="visible?'bi bi-eye-fill':'bi bi-eye-slash-fill'" ></i></span>
+        </div>
+      </div>
+      <small class="error" *ngIf="validarCampos('password')">
+        Ingrese su contraseña
+      </small>
     </div>
     <div class="text-center mt-3">
+      <button type="button" class="button-register mr-3" (click)="register()">Registrate</button>
       <button type="submit" class="button-login">Ingresar</button>
     </div>
   </form>
-</div>
+</div> -->

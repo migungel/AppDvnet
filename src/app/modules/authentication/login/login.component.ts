@@ -4,9 +4,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-declare global {
-  var parseXml:(xmlStr:string)=>{}
-}
+// declare global {
+//   var parseXml:(xmlStr:string)=>{}
+// }
 
 @Component({
   selector: 'app-login',
@@ -22,11 +22,11 @@ export class LoginComponent implements OnInit {
     private storage: EncryptService,
   ) { }
 
-  usuario: string = "";
+  identification: string = "";
   password: string = "";
   loginForm: FormGroup = this.formBuilder.group({
-    usuario: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(10)]],
-    password: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(30)]],
+    identification: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(14)]],
+    password: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(30)]],
   });
 
   user = { };
@@ -45,51 +45,27 @@ export class LoginComponent implements OnInit {
     }
 
     this.user = {
-      //user: 'admin',
-      //pass: 'DvtvCanal9',
-      user: this.loginForm.value.usuario,
-      pass: this.loginForm.value.password,
+      identification: this.loginForm.value.identification,
+      password: this.loginForm.value.password,
     };
 
     this.loginserv.login(this.user).subscribe(
       res => {
-        const myXML = new DOMParser().parseFromString(res, 'text/xml');
-        var id = myXML.getElementsByTagName('User_id')[0].textContent;
-        if ( id && (parseInt(id, 10) > 0) ) {
-          const currentUser = {
-            name: myXML.getElementsByTagName('Name')[0].textContent,
-            user_id: id,
-            identification: myXML.getElementsByTagName('Identificacion')[0].textContent,
-            sign: myXML.getElementsByTagName('Firma')[0].textContent,
-          };
-          this.storage.saveDataJson('currentUser', currentUser);
+        if ( res ) {
+          this.storage.saveData('token', res.toString());
           this.router.navigateByUrl('/home');
-        }else{
-          this.errorMsg();
+        } else {
+          this.errorMsg('');
         }
-
       },
       err => {
-        this.errorMsg();
+        this.errorMsg(err.error['message']);
       }
     );
+  }
 
-    //this.router.navigateByUrl('/home');
-
-    //this.authServ.inicioSesion(this.user).subscribe(
-    //  res => {
-    //    if (this.authServ.isLogueado()){
-    //      this.router.navigateByUrl('/home');
-    //    }else{
-    //      this.router.navigateByUrl('/login');
-    //    }
-    //  },
-    //  err => {
-    //    //console.log(err);
-    //    this.error = true;
-    //    this.alerta = 'Usuario o clave incorrecto';
-    //  }
-    //);
+  register(){
+    this.router.navigateByUrl('/auth/register');
   }
 
   viewPass(){
@@ -98,9 +74,9 @@ export class LoginComponent implements OnInit {
     return;
   }
 
-  errorMsg(){
+  errorMsg(msg: string){
     this.error = true;
-    this.alerta = 'Usuario o clave incorrecto';
+    this.alerta = msg;
   }
 
   validarCampos(campo: string): boolean | null{

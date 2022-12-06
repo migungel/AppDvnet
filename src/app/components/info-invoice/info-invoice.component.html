@@ -1,16 +1,20 @@
-<div class="card text-center">
+<div class="invoice">
   <!-- <img class="card-img-top" src="..." alt="Card image cap"> -->
-  <div class="card-body">
-    <h4 class="card-title"> Factura: {{ invoice }} </h4>
-    <p class="card-text"> Fecha: {{ date }} </p>
-  </div>
-  <ul class="list-group list-group-flush">
-    <li class="list-group-item"> Estado: {{ state }} </li>
-    <li class="list-group-item"> Clave acceso: {{ auth }} </li>
-  </ul>
-  <div class="card-body">
-    <button *ngIf="pdf" (click)="goToLink()" type="button" class="btn btn-primary mt-2 mb-2">PDF</button>
-    <!-- <a href="#" target="_blank" class="card-link">PDF</a> -->
-    <!-- <a href="#" class="card-link">Another link</a> -->
+  <div class="data">
+    <h4 class="title"> Factura: {{ invoice }} </h4>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item"> Fecha: {{ date }} </li>
+      <li class="list-group-item"> Estado: {{ state }} </li>
+      <li class="list-group-item">
+        <p class="key" #key>Clave acceso: {{ auth }}</p>
+        <!-- {{ (str.length>6)? (str | slice:0:6)+'...':(str) }} -->
+        <button (click)="copytext(key, buttonkey)" #buttonkey id="buttonkey" class="buttonkey" value="click to copy">{{ buttonCopy }}</button>
+      </li>
+    </ul>
+    <div class="card-body">
+      <button *ngIf="pdf!==''" (click)="goToLink()" type="button" class="btn btn-primary">PDF</button>
+      <!-- <a href="#" target="_blank" class="card-link">PDF</a> -->
+      <!-- <a href="#" class="card-link">Another link</a> -->
+    </div>
   </div>
 </div>

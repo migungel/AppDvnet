@@ -4,13 +4,12 @@
     <div class="row">
       <div class="text-center card-box">
         <div class="member-card pt-2 pb-2">
-          <!-- <img [src]="sign"/> -->
-          <img [src]="image" class="rounded-circle img-thumbnail">
+          <!-- <img [src]="image" class="rounded-circle img-thumbnail"> -->
           <div class="thumb-lg member-thumb mx-auto"><img src="../../../../assets/user1.png" class="rounded-circle img-thumbnail" alt="profile-image"></div>
           <div class="basic-info">
             <h4>{{ name }}</h4>
             <p class="text-muted">ID: {{ identification }}</p>
-            <p class="text-muted">@email</p>
+            <p class="text-muted">email: {{ email }}</p>
           </div>
           <div class="mt-2">
             <div class="row">
@@ -35,8 +34,8 @@
             </div>
           </div>
           <div class="btn-group-vertical">
-            <button type="button" class="btn btn-primary mt-2" (click)="changePass()">Cambiar contraseña</button>
-            <button type="button" class="btn btn-danger mt-2" (click)="cerrar()">Cerrar sesión</button>
+            <button type="button" class="btn changepass mt-2" (click)="changePass()">Cambiar contraseña</button>
+            <button type="button" class="btn closesesion mt-2" (click)="cerrar()">Cerrar sesión</button>
           </div>
           <p class="text-muted mt-3">Redes Sociales DVNET</p>
           <ul class="social-links list-inline">

@@ -1,3 +1,4 @@
+import { ServicesService } from './../../../core/services/services.service';
 import { Router } from '@angular/router';
 import { LoginService } from './../../../core/login/login.service';
 import { EncryptService } from './../../../core/storage/encrypt.service';
@@ -16,10 +17,12 @@ export class ProfileComponent implements OnInit {
     private login: LoginService,
     private router: Router,
     private sanitizer: DomSanitizer,
+    private service: ServicesService
   ) { }
 
   name: string = '';
   identification: string = '';
+  email: string = '';
   sign: string | ArrayBuffer | null;
   image: SafeResourceUrl;
 
@@ -28,8 +31,21 @@ export class ProfileComponent implements OnInit {
   }
 
   dataUser(){
-    this.name = this.storage.getDataJson('currentUser')['name'];
-    this.identification = this.storage.getDataJson('currentUser')['identification'];
+    this.service.verifyToken().subscribe(
+      res => {
+        this.loadData(res);
+      }
+    );
+  }
+
+  loadData(data: any){
+    this.service.getPartner(data).subscribe(
+      res => {
+        this.name = res.name;
+        this.identification = res.identification_id;
+        this.email = res.email;
+      }
+    );
   }
 
   goToLink(url: string){
@@ -37,10 +53,10 @@ export class ProfileComponent implements OnInit {
   }
 
   changePass(){
-    this.sign = this.storage.getDataJson('currentUser')['sign'];
-    //console.log(this.sign);
-    this.image = this.sanitizer.bypassSecurityTrustResourceUrl('data:image/png;base64,' + this.sign);
+    //this.sign = this.storage.getDataJson('currentUser')['sign'];
+    //this.image = this.sanitizer.bypassSecurityTrustResourceUrl('data:image/png;base64,' + this.sign);
     //window.open(fileURL);
+    this.router.navigateByUrl('auth/password');
   }
 
   cerrar(){

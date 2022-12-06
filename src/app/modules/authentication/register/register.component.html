@@ -1,0 +1,51 @@
+<div class="register">
+  <div class="child-register">
+    <img src="../../../assets/login/logo.png" alt="Card image cap">
+  </div>
+  <div class="child-register">
+    <form class="formlogin" [formGroup]="registerForm" (ngSubmit)="register()">
+      <h1 class="mb-3">Registrate</h1>
+      <h3 class="mb-3">Ingrese su número de identificación</h3>
+      <div *ngIf="show"
+        class='alert alert-danger alert-dismissible fade show'
+        [ngClass]="{ 'alert-danger': error, 'alert-success': !error }"
+        role="alert">
+        <strong *ngIf="error">Error!</strong> {{alerta}}
+        <button (click)="closeAlert()" type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="row">
+        <div class="mb-3">
+          <input type="text" class="form-control" id="identification" placeholder="Cédula o RUC" formControlName="identification">
+          <small class="error" *ngIf="validarCampos('identification')">
+            Ingrese una cedula válida
+          </small>
+        </div>
+        <!-- <input> -->
+        <div class="mb-3">
+          <div *ngIf="client" class="input-group mb-1">
+            <input [type]="changeType?'password':'text'" class="form-control" id="password" placeholder="Contraseña" formControlName="password">
+            <div class="input-group-append">
+              <span class="input-group-text eyeicon" (click)="viewPass()"><i [ngClass]="visible?'bi bi-eye-fill':'bi bi-eye-slash-fill'" ></i></span>
+            </div>
+          </div>
+          <small class="error" *ngIf="validarCampos('password')">
+            Ingrese una contraseña mayor a 8 caracteres
+          </small>
+        </div>
+        <div *ngIf="client" class="input-group mb-1">
+          <input type="password" class="form-control" id="repeatpassword" placeholder="Repita su contraseña" formControlName="repeatpassword">
+        </div>
+        <small class="error" *ngIf="validarCampos('repeatpassword')">
+          Las contraseñas deben coincidir
+        </small>
+      </div>
+      <div class="buttons text-center">
+        <button type="button" class="button-back" (click)="back()">Volver</button>
+        <button *ngIf="!client" type="button" class="button-login" (click)="check('identification')">Verificar</button>
+        <button *ngIf="client" type="submit" class="button-login">Registrar</button>
+      </div>
+    </form>
+  </div>
+</div>

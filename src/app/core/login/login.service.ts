@@ -1,3 +1,4 @@
+import { Body } from './../../interfaces/body';
 import { Router } from '@angular/router';
 import { EncryptService } from '../../core/storage/encrypt.service';
 import { Injectable } from '@angular/core';
@@ -17,32 +18,25 @@ export class LoginService {
   ) { }
 
   url: string = environment.WS_URL;
-  database: string = environment.DATABASE_NAME;
 
   isLogueado(){
-    return !!sessionStorage.getItem('credentials');
+    return !!sessionStorage.getItem('token');
   }
 
   login(user: any) {
-    let body = new URLSearchParams();
-    body.set('dbname', this.database);
-    body.set('user', user.user);
-    body.set('pass', user.pass);
-    //console.log(body.toString());
-    //const jsonData = JSON.stringify(user);
-    this.storage.saveDataJson('credentials', user);
-    return this.http.post(`${this.url}/GetLogin`, body.toString(), {
-      headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded'),
-      responseType: 'text'
-    });
+    return this.http.post(`${this.url}/login`, user);
   }
 
-  getDataByKey(credential: string){
-    return JSON.parse(this.storage.getData(credential));
+  verifyId(identification: string){
+    return this.http.get(`${this.url}/verifyId/${identification}`)
   }
+
+  //getDataByKey(credential: string){
+  //  return JSON.parse(this.storage.getData(credential));
+  //}
 
   logout(){
-    this.storage.removeData('credentials');
+    this.storage.removeData('token');
     this.storage.clearData();
     this.router.navigateByUrl('login');
   }

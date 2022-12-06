@@ -23,32 +23,30 @@ export class CardComponent implements OnInit {
   @Input() agreement_id: string= '';
   @Input() type_service: string= '';
   @Input() company: string= '';
+  cod: string = '';
 
   constructor(
     private service: ServicesService,
     private dialogOrder: MatDialog,
   ) { }
 
-  orderClient = {};
-
   ngOnInit(): void {
+    this.cod = this.name.replace("OP","").replace("-","");
   }
 
   details(){
-    //console.log(this.agreement_id);
     this.service.getOrders(this.agreement_id).subscribe(
       res => {
-        const xml = new DOMParser().parseFromString(res, 'text/xml');
-        this.orderClient = {
-          order_id: xml.getElementsByTagName('Order_id')[0].textContent,
-          order: xml.getElementsByTagName('Order')[0].textContent,
-          type_id: xml.getElementsByTagName('Type_id')[0].textContent,
-          type: xml.getElementsByTagName('Type')[0].textContent,
-          date: xml.getElementsByTagName('Fecha')[0].textContent,
-          date_execute: xml.getElementsByTagName('Fecha_ejecutar')[0].textContent,
+        let orderClient = {
+          order_id: res.order_id,
+          order: res.order,
+          type_id: res.type_id,
+          type: res.type,
+          date: res.fecha,
+          date_execute: res.fecha_ejecutar,
         };
         this.dialogOrder.open(PopOrderComponent, {
-          data: this.orderClient,
+          data: orderClient,
           backdropClass: 'backdropBackground',
           panelClass: 'my-class'
         } );

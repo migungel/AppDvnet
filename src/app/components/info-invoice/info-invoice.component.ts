@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, ElementRef, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-info-invoice',
@@ -18,11 +18,13 @@ export class InfoInvoiceComponent implements OnInit {
   constructor() { }
 
   urlPDF: string = '';
+  buttonCopy: string = 'Copiar clave de acceso';
 
   ngOnInit(): void {
   }
 
   goToLink(){
+    //console.log(this.pdf);
     var binary = atob(this.pdf.replace(/\s/g, ''));
     var len = binary.length;
     var buffer = new ArrayBuffer(len);
@@ -33,8 +35,33 @@ export class InfoInvoiceComponent implements OnInit {
     // create the blob object with content-type "application/pdf"
     var blob = new Blob( [view], { type: "application/pdf" });
     this.urlPDF = URL.createObjectURL(blob);
-    //return this.urlPDF;
     window.open(this.urlPDF, "_blank");
+  }
+
+  copytext(key: HTMLParagraphElement, buttonkey: HTMLButtonElement){
+    const selBox = document.createElement('textarea');
+    selBox.style.position = 'fixed';
+    selBox.style.left = '0';
+    selBox.style.top = '0';
+    selBox.style.opacity = '0';
+    if (typeof key.textContent === 'string') {
+      selBox.value = key.textContent.toString().split(": ")[1];
+      document.body.appendChild(selBox);
+      selBox.focus();
+      selBox.select();
+      document.execCommand('copy');
+      document.body.removeChild(selBox);
+    }
+
+    buttonkey.disabled = true;
+    buttonkey.textContent = 'Copiado';
+    buttonkey.style.background = '#4d5753';
+    setTimeout(() => {
+      buttonkey.disabled = false;
+      buttonkey.textContent = this.buttonCopy;
+      buttonkey.removeAttribute('style');
+    }, 3000);
+
   }
 
 }

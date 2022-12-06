@@ -14,43 +14,37 @@ export class ServicesService {
   ) { }
 
   url: string = environment.WS_URL;
-  url_client: string = environment.WS_CLIENT_URL;
-  database: string = environment.DATABASE_NAME;
 
-  getData(identifiaction: string){
-    let body = new URLSearchParams();
-    body.set('dbname', this.database);
-    body.set('user', this.storage.getDataJson('credentials')['user']);
-    body.set('pass', this.storage.getDataJson('credentials')['pass']);
-    body.set('identification_id', identifiaction);
-    return this.http.post(`${this.url_client}/GetData`, body.toString(), {
-      headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded'),
-      responseType: 'text'
-    });
+  verifyToken(){
+    return this.http.get<any>(`${this.url}/verifyToken`);
   }
 
-  getInvoice(partner_id: string){
-    let body = new URLSearchParams();
-    body.set('dbname', this.database);
-    body.set('user', this.storage.getDataJson('credentials')['user']);
-    body.set('pass', this.storage.getDataJson('credentials')['pass']);
-    body.set('partner_id', partner_id);
-    return this.http.post(`${this.url_client}/GetInvoices`, body.toString(), {
-      headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded'),
-      responseType: 'text'
-    });
+  getPartner(user: any){
+    return this.http.post<any>(`${this.url}/getPartner`, user);
+  }
+
+  getData(user: any){
+    return this.http.post<any>(`${this.url}/getData`, user);
+  }
+
+  getProducts(agreement: string){
+    return this.http.get<any>(`${this.url}/getProducts/${agreement}`);
+  }
+
+  getInvoice(year: string, user: any){
+    return this.http.post<any>(`${this.url}/getInvoices/${year}`, user);
   }
 
   getOrders(agreement_id: string){
-    let body = new URLSearchParams();
-    body.set('dbname', this.database);
-    body.set('user', this.storage.getDataJson('credentials')['user']);
-    body.set('pass', this.storage.getDataJson('credentials')['pass']);
-    body.set('contract_id', agreement_id);
-    return this.http.post(`${this.url_client}/GetOrders`, body.toString(), {
-      headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded'),
-      responseType: 'text'
-    });
+    return this.http.get<any>(`${this.url}/getOrders/${agreement_id}`);
+  }
+
+  getAllProducts(){
+    return this.http.get<any>(`${this.url}/getAllProducts`);
+  }
+
+  getMotives(){
+    return this.http.get<any>(`${this.url}/getMotives`);
   }
 
 }

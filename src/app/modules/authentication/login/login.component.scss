@@ -1,37 +1,91 @@
-.fomlogin {
-  min-width: 300px;
-  max-width: 60%;
-  margin: 0px auto;
-  background: rgba(255, 255, 255, 0.15);
+.login{
+  height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+}
+
+.child-login{
+  display: grid;
+  justify-content: center;
+  align-content: center;
+}
+
+.formlogin {
   padding: 2rem 3rem;
-  margin: auto;
   border-radius: 2.5rem;
-  background-color: #9ad3ff;
+  background-color: #3EB2E0;
   //box-shadow: 13px 13px 20px #cbced1, -13px -13px 20px #ffffff;
-  color: black;
-  position:absolute;
-  top:25%;
-  right:0;
-  left:0;
+  width: 100%;
+  color: #151B94;
+  margin-left: 0px;
+  margin-right: 0px;
+}
+
+@media (max-width: 480px) {
+  img {
+    height: 25vh;
+  }
+  .login{
+    grid-template-columns: none;
+  }
+}
+@media (min-width: 1025px) {
+  img {
+    height: 35vh;
+  }
+  .formlogin{
+    width: 70ch;
+  }
+}
+@media (min-width: 481px) and (max-width: 1024px) {
+  img {
+    height: 30vh;
+  }
 }
 
 .button-login {
-  background-color: #00ddec;
+  background-color: #53087D;
 	border-radius: 35px;
-	border: 1px solid #00a4af;
+	border: 1px solid #4868B5;
 	display: inline-block;
 	cursor: pointer;
-	color: black;
+	color: white;
 	font-family: Arial;
 	font-size: 17px;
 	padding: 8px 20px;
 	text-decoration: none;
-	text-shadow: 0px 1px 0px #00a4af;
+	text-shadow: 0px 1px 0px #4868B5;
+  min-width: 150px;
+  margin: 5px;
 }
 .button-login:hover {
-	background-color: #00a4af;
+	background-color: #4868B5;
 }
 .button-login:active {
+	position: relative;
+	top: 1px;
+}
+
+.button-register {
+  background-color: #008B9F;
+	border-radius: 35px;
+	border: 1px solid #559099;
+	display: inline-block;
+	cursor: pointer;
+	color: white;
+	font-family: Arial;
+	font-size: 17px;
+	padding: 8px 20px;
+	text-decoration: none;
+	text-shadow: 0px 1px 0px #559099;
+  min-width: 150px;
+  margin: 5px;
+}
+.button-register:hover {
+	background-color: #559099;
+}
+.button-register:active {
 	position: relative;
 	top: 1px;
 }
@@ -41,8 +95,6 @@
   border: none;
 }
 .form-control{
+  box-shadow: none;
   border: none;
 }
-
-
-

@@ -1,0 +1,28 @@
+<!-- <form [formGroup]="loginForm" (ngSubmit)="regedit()"> -->
+<form [formGroup]="form" (ngSubmit)="send()">
+  <div class="container mt-3">
+    <div class="form-group mb-3">
+      <label for="motive" class="form-label">Motivo</label>
+      <select class="form-control" id="motive" formControlName="motive">
+        <option selected> </option>
+        <option *ngFor="let m of motives" value="{{ m['id'] }}">{{ m['name'] | titlecase }}</option>
+      </select>
+      <small class="error" *ngIf="validarCampos('motive')">
+        Ingrese un motivo
+      </small>
+    </div>
+    <div class="form-group mb-3">
+      <label for="detail" class="form-label">Motivo de Requerimiento</label>
+      <input type="text" class="form-control" id="Detail" placeholder="Detalle" formControlName="detail" required>
+      <small class="error" *ngIf="validarCampos('detail')">
+        Ingrese un detalle
+      </small>
+    </div>
+    <div class="text-center">
+      <!--button type="submit" class="btn btn-primary">Registrar</button-->
+      <button type="submit" class="send">Enviar</button>
+    </div>
+  </div>
+</form>
+<!--button (click)="registrar()" class="btn btn-primary">Registrar</button-->
+

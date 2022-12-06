@@ -7,7 +7,6 @@ import { CommonModule } from '@angular/common';
 
 import { HomeRoutingModule } from './home-routing.module';
 import { InfoComponent } from './info/info.component';
-import { OtherComponent } from './other/other.component';
 import { ProfileComponent } from './profile/profile.component';
 import { InvoiceComponent } from './invoice/invoice.component';
 import { PointsComponent } from './points/points.component';
@@ -20,18 +19,21 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatSliderModule } from '@angular/material/slider';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ProductsComponent } from './products/products.component';
+import { SupportComponent } from './support/support.component';
 
 
 @NgModule({
   declarations: [
     InfoComponent,
-    OtherComponent,
     CardComponent,
     ProfileComponent,
     InvoiceComponent,
     PointsComponent,
     InfoInvoiceComponent,
     PointsProductsComponent,
+    ProductsComponent,
+    SupportComponent,
   ],
   imports: [
     CommonModule,

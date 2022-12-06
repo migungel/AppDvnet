@@ -1,17 +1,88 @@
-.card{
-  display: flex;
+.invoice{
   justify-content: center;
-  align-items: center;
-  margin-left:auto;
-  margin-right:auto;
-  margin: 20px;
-  font-size: 15px;
+  align-content: center;
+  //border: 5px solid green;
+  width: 100%;
 }
 
-.card-body{
-  padding: 2px;
+.data{
+  margin: 20px;
+  background: #f2f2f2;
+  border-radius: 20px;
+}
+
+@media (max-width: 480px) {
+  .contract{
+    width: 250px;
+  }
+}
+
+.btn{
+  text-align: center;
+  color: white;
+  width: 100%;
+  padding: 5px;
+  border: 0;
+  outline: none;
+  cursor: pointer;
+  margin-top: 5px;
+  border-bottom-right-radius: 20px;
+  border-bottom-left-radius: 20px;
+  background: #53087D;
 }
 
 .list-group-item{
-  padding: 2px;
+  background: #f2f2f2;
 }
+
+.title{
+  text-align: center;
+  font-size: 20px;
+  font-weight: 500;
+  width: 100%;
+  padding: 10px;
+  border-top-right-radius: 20px;
+  border-top-left-radius: 20px;
+  background: #008B9F;
+  color: white;
+}
+
+.key{
+  width: 80%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.buttonkey{
+  text-align: center;
+  color: white;
+  width: 100%;
+  padding: 5px;
+  border: 0;
+  outline: none;
+  border-radius: 20px;
+  background: #35AA81;
+  //background: #4d5753;
+}
+
+
+
+
+//.card{
+//  display: flex;
+//  justify-content: center;
+//  align-items: center;
+//  margin-left:auto;
+//  margin-right:auto;
+//  margin: 20px;
+//  font-size: 15px;
+//}
+//
+//.card-body{
+//  padding: 2px;
+//}
+//
+//.list-group-item{
+//  padding: 2px;
+//}

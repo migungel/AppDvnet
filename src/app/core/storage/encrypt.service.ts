@@ -22,13 +22,15 @@ export class EncryptService {
     sessionStorage.setItem(key, this.encrypt(value));
   }
 
-  public saveDataJson(key: string, value: any) {
+  saveDataJson(key: string, value: any) {
     const jsonData = JSON.stringify(value);
     sessionStorage.setItem(key, this.encrypt(jsonData));
   }
 
   getToken(key: string){
-    return sessionStorage.getItem(key);
+    //return sessionStorage.getItem(key);
+    let token = sessionStorage.getItem(key)|| "";
+    return this.decrypt(token);
   }
 
   public getData(key: string) {

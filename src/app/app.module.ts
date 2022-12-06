@@ -1,3 +1,6 @@
+import { RegisterComponent } from './modules/authentication/register/register.component';
+import { MatButtonModule } from '@angular/material/button';
+import { ChangePassComponent } from './modules/authentication/change-pass/change-pass.component';
 import { SpinnerInterceptor } from './core/interceptor/spinner.interceptor';
 import { SpinnerModule } from './modules/spinner/spinner.module';
 import { LoginComponent } from './modules/authentication/login/login.component';
@@ -19,12 +22,18 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { PointsProductsComponent } from './components/points-products/points-products.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatRippleModule } from '@angular/material/core';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
+    RegisterComponent,
     HeaderComponent,
+    ChangePassComponent
   ],
   imports: [
     BrowserModule,
@@ -41,7 +50,12 @@ import { PointsProductsComponent } from './components/points-products/points-pro
       // or after 30 seconds (whichever comes first).
       registrationStrategy: 'registerWhenStable:30000'
     }),
-    SpinnerModule
+    SpinnerModule,
+    MatFormFieldModule,
+    MatButtonModule,
+    MatInputModule,
+    MatRippleModule,
+    MatIconModule,
   ],
   providers: [
     {

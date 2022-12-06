@@ -5,9 +5,10 @@
 export const environment = {
   production: false,
   //WS_URL: "https://192.168.0.118:8070/dvagreement.asmx",
-  WS_URL: "https://192.168.0.118:4443/dvagreement.asmx",
-  WS_CLIENT_URL: "https://192.168.0.118:4443/DvClientServices.asmx",
-  DATABASE_NAME: "dvtv",
+  WS_URL: "http://192.168.0.123:5000/fastapi",
+  PUSH_URL: "http://192.168.0.123:4000/notification",
+  //WS_URL: "http://dvservices.somee.com/dvagreement.asmx",
+  //WS_CLIENT_URL: "https://192.168.0.118:4443/DvClientServices.asmx",
 };
 
 /*

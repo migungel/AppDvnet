@@ -1,7 +1,8 @@
+import { SupportComponent } from './support/support.component';
+import { ProductsComponent } from './products/products.component';
 import { PointsComponent } from './points/points.component';
 import { InvoiceComponent } from './invoice/invoice.component';
 import { ProfileComponent } from './profile/profile.component';
-import { OtherComponent } from './other/other.component';
 import { InfoComponent } from './info/info.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -16,6 +17,10 @@ const routes: Routes = [
     component: InvoiceComponent,
   },
   {
+    path: 'products',
+    component: ProductsComponent,
+  },
+  {
     path: 'points',
     component: PointsComponent,
   },
@@ -24,8 +29,8 @@ const routes: Routes = [
     component: ProfileComponent,
   },
   {
-    path: 'other',
-    component: OtherComponent,
+    path: 'support',
+    component: SupportComponent,
   },
   {
     path: '',

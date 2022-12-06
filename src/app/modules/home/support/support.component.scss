@@ -1,0 +1,27 @@
+.container{
+  background: #008B9F;
+  padding: 20px;
+  border-radius: 20px;
+}
+
+.send{
+  background-color: #53087D;
+  border-radius: 35px;
+  border: 1px solid #4868B5;
+  display: inline-block;
+  cursor: pointer;
+  color: white;
+  font-family: Arial;
+  font-size: 17px;
+  padding: 8px 20px;
+  text-decoration: none;
+  min-width: 150px;
+  margin: 5px;
+}
+.send:hover{
+  background-color: #4868B5;
+}
+.send:active{
+  position: relative;
+  top: 1px;
+}

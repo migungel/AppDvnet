@@ -1,0 +1,40 @@
+<nav class="navbar navbar-light justify-content-center">
+  <form class="form">
+    <div class="form-group mb-3">
+      <label for="contracts" class="form-label">Elija un contrato</label>
+      <select class="form-control" id="contracts" #c (change)="select(c.value)">
+          <option selected> </option>
+          <option *ngFor="let contract of contracts" value="{{ contract['agreement_id'] }}">{{ contract['agreement'] | uppercase }}</option>
+      </select>
+    </div>
+  </form>
+</nav>
+
+<div class="container">
+  <div class="mb-3" *ngFor="let contract of contracts_agreement">
+    <div class="card-body servicios">
+      <div class="title">
+        <h2 class="card-title"> Servicio actual de: {{ contract['type_product'] | titlecase }} </h2>
+      </div>
+      <div class="child-serv">
+        <h4 class="card-title"> {{ contract['name'] | titlecase }} </h4>
+      </div>
+      <div class="child-serv">
+        <div *ngIf="contract['new_products'].length>0">
+          <h4 class="card-title">Mas servicios:</h4>
+          <select class="form-control select-serv" id="products">
+            <option selected> </option>
+            <option *ngFor="let prod of contract['new_products']">{{ prod['plan'] | uppercase }}</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- <a class="img-link" href="../../../assets/ultrapuntos.jpeg" target="_blank">
+      <img class="card-img-bottom" src="../../../assets/ultrapuntos.jpeg" alt="Card image cap">
+    </a> -->
+<!-- <p *ngIf="invoicesEmpty" class="register-invoices">*No existen registros con ese año*</p> -->
+
+

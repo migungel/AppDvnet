@@ -31,7 +31,12 @@ export class PopOrderComponent implements OnInit {
     this.type_id = data.type_id;
     this.type = data.type;
     this.date = data.date;
-    this.date_execute = data.date_execute;
+    let date_exe: string = data.date_execute;
+    if (date_exe){
+      //date_exe = date_exe.toString().split("T")[0] + " T:" + date_exe.toString().split("T")[1];
+      date_exe = date_exe.replace("T"," ");
+    }
+    this.date_execute = date_exe;
   }
 
   closeDialog() {
